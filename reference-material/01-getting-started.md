@@ -1,4 +1,4 @@
-# Reference for various topics
+# Reference material for Node.js training
 
 ## Installation and other tools
 __Step 1__: [Install Node](https://nodejs.org/en/) - it is installed via a wizard (accept all defaults during installation process). To test if Node is installed correctly, open the command prompt and type the following - each should display the installed version of node and npm CLI tools as output. If the command isn't found, there is an error in the installation.
