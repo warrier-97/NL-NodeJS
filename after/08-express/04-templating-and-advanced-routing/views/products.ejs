@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title><%=title%></title>
+        <link rel="stylesheet" href="/css/products.css">
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-1">
+                <h3><%=title%></h3>
+                <hr />
+                <table id="tbl-products">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% for( var i = 0; i < data.products.length; i++ ) { %>
+                        <tr>
+                            <td><img class="product-image" src="<%=data.products[i].imageUrl%>" /></td>
+                            <td><a href="/products/<%=data.products[i].id%>"><%=data.products[i].name%></a></td>
+                            <td>$<%=data.products[i].price%></td>
+                            <td><%=data.products[i].starRating%></td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

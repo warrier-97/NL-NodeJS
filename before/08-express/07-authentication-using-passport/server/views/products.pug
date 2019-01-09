@@ -1,0 +1,27 @@
+//- attribute="value" pairs are comma-separated and given within parenthesis
+doctype html
+html(lang="en")
+    head
+        title #{title}
+        link(rel="stylesheet", href="/css/site.css")
+        link(rel="stylesheet", href="/css/products.css")
+    body
+        div.row
+            div.col-1
+                h3 #{title}
+                hr
+                table#tbl-products
+                    thead
+                        tr
+                            th
+                            th Name
+                            th Price
+                            th Rating
+                    tbody
+                    each product in data.products
+                        tr
+                            td
+                                img.product-image(src=product.imageUrl)
+                            td #{product.name}
+                            td #{product.price}
+                            td #{product.starRating}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title><%=title%></title>
+        <link rel="stylesheet" href="/css/site.css">
+        <link rel="stylesheet" href="/css/auth.css">
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-1">
+                <h3>Sign up</h3>
+                <hr />
+                <form action="/auth/register" method="post" class="auth-form">
+                    <div>
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" placeholder="johndoe">
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <input type="submit" id="btn-auth-form" value="Register" />
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

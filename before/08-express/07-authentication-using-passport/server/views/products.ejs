@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title><%=title%></title>
+        <link rel="stylesheet" href="/css/site.css">
+        <link rel="stylesheet" href="/css/products.css">
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-1">
+                <h3>Add a new product</h3>
+                <hr />
+                <form action="/api/products" method="post" class="add-product">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Example: Victorinox Swiss Army Knife">
+                    </div>
+                    <div>
+                        <label for="code">Product code</label>
+                        <input type="text" name="code" id="code">
+                    </div>
+                    <div>
+                        <label for="releaseDate">Release date</label>
+                        <input type="date" name="releaseDate" id="releaseDate">
+                    </div>
+                    <div>
+                        <label for="price">Price</label>
+                        <input type="text" name="price" id="price">
+                    </div>
+                    <div>
+                        <label for="starRating">Rating (1 - 5)</label>
+                        <input type="text" name="starRating" id="starRating">
+                    </div>
+                    <div>
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description"></textarea>
+                    </div>
+                    <input type="submit" id="btn-add-product" value="Add product" />
+                </form>
+            </div>
+        </div>        
+        <div class="row">
+            <div class="col-1">
+                <h3><%=title%></h3>
+                <hr />
+                <table id="tbl-products">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% for( var i = 0; i < products.length; i++ ) { %>
+                        <tr>
+                            <td><img class="product-image" src="<%=products[i].imageUrl%>" /></td>
+                            <td><a href="/products/<%=products[i]._id%>"><%=products[i].name%></a></td>
+                            <td>$<%=products[i].price%></td>
+                            <td><%=products[i].starRating%></td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

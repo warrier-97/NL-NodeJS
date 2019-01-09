@@ -1,0 +1,119 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Superb Leaf Rake",
+        "code": "GDN-0011",
+        "releaseDate": "March 19, 2016",
+        "description": "Leaf rake with 48-inch wooden handle.",
+        "price": 19.95,
+        "starRating": 3.2,
+        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+      },
+      {
+        "id": 2,
+        "name": "Garden Cart",
+        "code": "GDN-0023",
+        "releaseDate": "March 18, 2016",
+        "description": "15 gallon capacity rolling garden cart",
+        "price": 32.99,
+        "starRating": 4.2,
+        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+      },
+      {
+        "id": 3,
+        "name": "Hammer",
+        "code": "TBX-0048",
+        "releaseDate": "May 21, 2016",
+        "description": "Curved claw steel hammer",
+        "price": 8.9,
+        "starRating": 4.8,
+        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+      },
+      {
+        "id": 4,
+        "name": "Saw",
+        "code": "TBX-0022",
+        "releaseDate": "May 15, 2016",
+        "description": "15-inch steel blade hand saw",
+        "price": 11.55,
+        "starRating": 3.7,
+        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
+      },
+      {
+        "id": 5,
+        "name": "Video Game Controller",
+        "code": "GMG-0042",
+        "releaseDate": "October 15, 2015",
+        "description": "Standard two-button video game controller",
+        "price": 35.95,
+        "starRating": 4.6,
+        "imageUrl": "http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "createdDate": "May 25, 2016",
+        "reviewer": "John Doe",
+        "productId": 1,
+        "starRating": 4,
+        "title": "Just go for it",
+        "text": "Velit anim dolor consectetur qui esse Lorem aliqua id non. Deserunt elit cupidatat nisi id mollit ut fugiat labore eiusmod enim exercitation. Dolor est commodo aliquip enim ad anim dolore minim est veniam velit cupidatat commodo cupidatat. Ea laborum velit laboris dolor dolore eu dolor. Irure consectetur nulla nulla incididunt fugiat."
+      },
+      {
+        "id": 2,
+        "createdDate": "Apr 25, 2016",
+        "reviewer": "Jane Doe",
+        "productId": 2,
+        "starRating": 3,
+        "title": "Not suitable for every situation",
+        "text": "Duis duis in velit velit dolor amet reprehenderit ex aliquip mollit anim. Ut laboris id tempor consequat deserunt non elit eu est officia. Et aute qui irure cupidatat. Non deserunt irure fugiat reprehenderit reprehenderit labore. Aliquip enim consectetur veniam id occaecat. Ad ut non in consectetur et aliquip pariatur pariatur do reprehenderit exercitation. Ipsum deserunt non anim voluptate adipisicing non irure laboris magna tempor cillum."
+      },
+      {
+        "id": 3,
+        "createdDate": "Jun 07, 2016",
+        "reviewer": "Barry Barton",
+        "productId": 1,
+        "starRating": 5,
+        "title": "Awesome product - sheer pleasure using it",
+        "text": "Ea consequat ex velit aute cupidatat aute nulla officia mollit ut ut do. Officia esse mollit enim ad anim qui cillum eu in dolore Lorem sunt do. Deserunt eiusmod sint nisi proident. Ullamco adipisicing labore tempor ea et occaecat nostrud exercitation consectetur excepteur ipsum laboris. Duis culpa deserunt proident dolore nisi veniam fugiat irure sint. Eu quis labore consequat id ut fugiat elit aliquip ea. Amet ea amet ea sit."
+      },
+      {
+        "productId": 1,
+        "createdDate": "Jun 07, 2016",
+        "reviewer": "Prashanth Puranik",
+        "title": "Great",
+        "text": "Dolor eiusmod reprehenderit pariatur labore excepteur reprehenderit ex quis eu occaecat. Amet aute ea aute mollit fugiat deserunt consequat. Deserunt eu fugiat consequat proident laborum sint non do. Culpa labore commodo quis exercitation ex ex quis anim fugiat dolor.",
+        "id": 6,
+        "starRating": 4
+      },
+      {
+        "createdDate": "Nov 12, 2017",
+        "reviewer": "Mahalakshmi",
+        "starRating": 4,
+        "title": "My rating on the app",
+        "text": "Nostrud minim laborum tempor aute ad. Amet id Lorem ut deserunt. Duis pariatur nostrud ipsum sunt voluptate et elit anim nulla veniam ipsum. Duis deserunt ex aliqua qui et. Proident do cillum ex eiusmod. Consequat eiusmod incididunt qui nulla ullamco Lorem pariatur sint magna reprehenderit.",
+        "productId": "3",
+        "id": 7
+      },
+      {
+        "createdDate": "Sun Nov 12 2017",
+        "reviewer": "Mithun",
+        "starRating": "4",
+        "title": "Great",
+        "text": "Occaecat esse mollit commodo et reprehenderit reprehenderit nisi pariatur ut sit magna. Ullamco ipsum do magna esse quis laboris consectetur laborum adipisicing deserunt. Proident deserunt do irure et eu exercitation incididunt nostrud minim ea sit commodo sit. Proident Lorem exercitation deserunt sint. Cupidatat anim deserunt commodo eiusmod enim. Nulla consequat cillum Lorem velit irure sunt aute.",
+        "productId": "4",
+        "id": 12
+      },
+      {
+        "createdDate": "Sun Nov 12 2017",
+        "reviewer": "Mithun",
+        "starRating": "4",
+        "title": "Great",
+        "text": "Lorem est nisi quis eiusmod voluptate dolore do deserunt consequat in aliquip et excepteur. Do officia et Lorem fugiat proident dolor. Commodo culpa exercitation consequat tempor duis ipsum consectetur est amet minim nostrud elit. Laboris non commodo commodo cupidatat sunt culpa. Nisi nulla dolor Lorem exercitation non. Minim et nostrud Lorem ea. Adipisicing duis qui anim ut.",
+        "productId": "4",
+        "id": 13
+      }
+    ]
+  }

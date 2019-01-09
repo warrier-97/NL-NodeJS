@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 90%;
+    max-width: 1060px;
+    margin: 0 auto;
+}
+
+hr {
+    height: 0;
+    border: 0;
+    border-bottom: 1px solid #ffa400;
+}
+
+.row {
+    overflow: auto;
+}
+
+.col-1, .col-2 {
+    float: left;
+    width: 100%
+}
+
+.col-1 {
+    margin-right: 0%;
+}
+
+@media all and (max-width: 768px) {
+    .col-1, .col-2 {
+        width: 100%;
+        margin-right: 0;
+    }
+}

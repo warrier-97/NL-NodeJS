@@ -1,0 +1,31 @@
+.form-group {
+    width: 100%;
+    margin-bottom: 20px;
+    overflow: auto;
+}
+
+.form-group label {
+    float: left;
+    width: 22.5%;
+    margin-right: 2.5%;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    box-sizing: border-box;
+    float: left;
+    width: 75%;
+}
+
+.form-group button {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.even {
+    color: rebeccapurple;
+}
+
+.odd {
+    color: maroon;
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title><%=title%></title>
+        <link rel="stylesheet" href="/css/product.css">
+    </head>
+    <body>
+        <div class="row">
+            <h3><%=title%></h3>
+            <hr />
+            <div class="col-1">
+                <img class="product-image" src="<%=product.imageUrl%>" />
+            </div>
+            <div class="col-2">
+                <p><%=product.description%></p>
+                <p><%=product.code%></p>
+                <p>Released on <%=product.releaseDate%></p>
+                <p>Price : $<%=product.price%></p>
+                <p>Rating (out of 5) : <%=product.starRating%></p>
+                &laquo;&nbsp;<a href="/products">Back to product catalog</a>
+            </div>
+        </div>
+    </body>
+</html>

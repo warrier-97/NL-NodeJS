@@ -1,0 +1,21 @@
+{
+    "app": {
+        "baseUrl": "127.0.0.1",
+        "port": 3000
+    },
+    "api": {
+        "baseUrl": "127.0.0.1",
+        "port": 3000,
+        "prefix": "/api"
+    },
+    "data_sources": [
+        {
+            "protocol": "mongodb",
+            "username": "",
+            "password": "",
+            "server": "127.0.0.1",
+            "port": 27017,
+            "db": "product-catalog"
+        }
+    ]
+}

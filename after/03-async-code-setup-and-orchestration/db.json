@@ -1,0 +1,30 @@
+{
+    "books": [
+        {
+            "name": "The Prisoner of Azkaban",
+            "published": 1995,
+            "author": "J. K. Rowling"
+        },
+        {
+            "name": "The Lord of the Rings",
+            "published": 1954,
+            "author": "J. R. R. Tolkien"
+        }
+    ],
+    "authors": [
+        {
+            "name": "J. K. Rowling",
+            "nationality": "British",
+            "genre": [
+                "Fantasy", "Drama", "Young adult fiction", "Tragicomedy", "Crime fiction"
+            ]
+        },
+        {
+            "name": "J. R. R. Tolkien",
+            "nationality": "British",
+            "genre": [
+                "Fantasy", "Translation", "Literary criticism"
+            ]
+        }
+    ]
+}
