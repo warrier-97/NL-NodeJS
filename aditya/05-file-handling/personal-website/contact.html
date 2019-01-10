@@ -9,9 +9,9 @@
     <body>
         <h1>Contact form</h1>
         <hr />
-        <form>
-            Name: <input type="text" placeholder="Your name" />
-            Email: <input type="email" placeholder="youremailid@example.com" />
+        <form action="/save" method="POST">
+            Name: <input type="text" name="name" placeholder="Your name" />
+            Email: <input type="email" name="email" placeholder="youremailid@example.com" />
             <button>Submit</button>
         </form>
     </body>
