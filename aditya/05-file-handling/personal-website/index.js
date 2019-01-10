@@ -48,8 +48,15 @@ function requestHandler(req,res){
                         return;
                     }
 
-                    fs.writeFile(`./contacts/${contact.email.txt}`)
-                    res.end(`Hey ${contact.name}! Will contact you soon on ${contact.email}`)
+                    fs.writeFile( `./contacts/${contact.email}.txt`, `Name: ${contact.name} | Email: ${contact.email}`, 'utf8', function( error ) {
+                        if( error ) {
+                            res.end( 'Sorry, I was unable to save your contact information. Try again.' );
+                            return;
+                        } else {
+                            res.end( `Hi ${contact.name}, I will reach out to you on ${contact.email}` );
+                            return;
+                        }
+                    });
                 })
             }
         
