@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "prodid":1,
+        "text": "Great phone"
+    },
+    {
+        "id": 2,
+        "prodid":2,
+        "text": "Average phone"
+    }
+]
