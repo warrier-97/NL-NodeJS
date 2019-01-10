@@ -6,7 +6,7 @@ Node.js training at Nineleaps, Bangalore from Jan 10 - 15 2019
 * [Node.js slides](nodejs.pdf)
 
 ## Meeting link on Zoom
-[Meeting link](https://zoom.us/j/)
+[Meeting link]( https://zoom.us/j/334653506)
 
 ## Video links
 * [Jan 10 2019]()
