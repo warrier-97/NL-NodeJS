@@ -1,11 +1,16 @@
 const http = require( 'http' );
 const fs = require( 'fs' );
 const anyBody = require( 'body/any' );
+const url = require( 'url' );
+const querystring = require( 'querystring' );
 
 const server = http.createServer(function( req, res ) {
     res.setHeader( 'Content-Type', 'text/html' );
     
-    switch( req.url ) {
+    const urlParts = url.parse( req.url, true );
+    console.log( urlParts );
+
+    switch( urlParts.pathname ) {
         case '/':
             fs.readFile( './index.html', 'utf8', function( error, data ) {
                 if( error ) {
@@ -39,7 +44,7 @@ const server = http.createServer(function( req, res ) {
                     return;
                 }
 
-                res.end( JSON.stringify( files ) );
+                res.end( JSON.stringify( files.slice( 0, n ) ) );
             });
             break;
         case '/save':
