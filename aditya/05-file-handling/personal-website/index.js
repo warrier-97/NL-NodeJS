@@ -14,19 +14,27 @@ const fs = require('fs')
 
 const http = require('http')
 const anyBody = require('body/any')
+const url = require('url')
 const server = http.createServer()
 function requestHandler(req,res){
     res.setHeader('Content-Type','text/html')
-    switch(req.url){
+    const urlParts = url.parse(req.url,true)
+    console.log(urlParts)
+    switch(req.url){ //can be replaced by urlParts.pathname 
         case '/':
             fs.readFile('./index.html',"utf8",function(error,data){
                 if(error){
+                    res.statusCode = 404;
                     console.log('Error ' + error.message)
                     return;
                 }
                 res.end(data)
             })
             break;
+        case '/contact':
+            res.statusCode = 301;
+            res.setHeader("Location","/contacts")
+            res.end()
         case '/contacts':
             fs.readFile('./contact.html',"utf8",function(error,data){
             if(error){
@@ -36,7 +44,22 @@ function requestHandler(req,res){
             res.end(data)
             })
             break;
-
+        case '/getcontacts':
+            fs.readdir("./contacts",function(err,items){
+                for(let i=0;i<items.length;i++){
+                    console.log(items[i])
+                    fs.readFile("./contacts/"+items[i],"utf8",function(err,data){
+                        var arr = data.split("|")
+                        var arr2 = new Array()
+                        for(let j = 0;j<arr.length;j++){
+                            arr2.push(arr[i].split(":"))
+                        }
+                        console.log(arr)
+                        console.log(arr2)
+                    })
+                }
+            })
+            break;
         case '/save':
             if(req.method.toUpperCase() !== 'POST'){
                 res.end('Invalid HTTP method. Use POST /save to send data')
