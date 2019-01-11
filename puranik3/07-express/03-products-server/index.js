@@ -7,7 +7,7 @@ const app = express();
 // middleware functions
 // executed in order in which they are set
 app.use( express.json() ); // parse JSON data
-app.use( express.urlencoded() ); // parse form data 
+app.use( express.urlencoded( { extended : false } ) ); // parse form data 
 
 // associate the routers with the application
 app.use( indexRouter );
