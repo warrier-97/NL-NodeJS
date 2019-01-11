@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const data = require('../data/seed.json')
 
-router.get('/review/:productId',function(req,res){
+router.get('/:productId',function(req,res){
     const productId = parseInt(req.params.productId)
     if(isNaN(productId)){
         res.status(400).json({message:"Invalid Product Id"})
