@@ -15,3 +15,6 @@ Node.js training at Nineleaps, Bangalore from Jan 10 - 15 2019
 * [Jan 11 2019]()
 * [Jan 12 2019]()
 * [Jan 15 2019]()
+
+## References
+- [Intro to npm scripts on Freecodecamp](https://medium.freecodecamp.org/introduction-to-npm-scripts-1dbb2ae01633)

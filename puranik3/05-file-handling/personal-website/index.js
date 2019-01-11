@@ -38,13 +38,18 @@ const server = http.createServer(function( req, res ) {
             });
             break;
         case '/getcontacts':
+            if( urlParts.query.number === undefined ) {
+                res.statusCode = 400;
+                res.end();
+            }
+
             fs.readdir( './contacts', function( error, files ) {
                 if( error ) {
                     res.end( 'error occured while reading contacts' );
                     return;
                 }
 
-                res.end( JSON.stringify( files.slice( 0, n ) ) );
+                res.end( JSON.stringify( files.slice( 0, parseInt( urlParts.query.number ) ) ) );
             });
             break;
         case '/save':
