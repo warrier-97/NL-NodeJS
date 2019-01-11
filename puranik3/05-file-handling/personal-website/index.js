@@ -9,12 +9,18 @@ const server = http.createServer(function( req, res ) {
         case '/':
             fs.readFile( './index.html', 'utf8', function( error, data ) {
                 if( error ) {
+                    res.statusCode = 404;
                     res.end( 'Page not found' );
                     return;
                 }
 
                 res.end( data );
             });
+            break;
+        case '/contacts':
+            res.statusCode = 301;
+            res.setHeader( 'Location', '/contact' );
+            res.end();
             break;
         case '/contact':
             fs.readFile( './contact.html', 'utf8', function( error, data ) {
@@ -24,6 +30,16 @@ const server = http.createServer(function( req, res ) {
                 }
 
                 res.end( data );
+            });
+            break;
+        case '/getcontacts':
+            fs.readdir( './contacts', function( error, files ) {
+                if( error ) {
+                    res.end( 'error occured while reading contacts' );
+                    return;
+                }
+
+                res.end( JSON.stringify( files ) );
             });
             break;
         case '/save':
