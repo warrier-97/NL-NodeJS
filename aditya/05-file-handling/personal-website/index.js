@@ -20,7 +20,7 @@ function requestHandler(req,res){
     res.setHeader('Content-Type','text/html')
     const urlParts = url.parse(req.url,true)
     console.log(urlParts)
-    switch(req.url){ //can be replaced by urlParts.pathname 
+    switch(urlParts.pathname){ //can be replaced by urlParts.pathname 
         case '/':
             fs.readFile('./index.html',"utf8",function(error,data){
                 if(error){
@@ -45,19 +45,28 @@ function requestHandler(req,res){
             })
             break;
         case '/getcontacts':
+        if(urlParts.query.number === undefined){
+            res.statusCode = 400
+            res.end()
+        }
             fs.readdir("./contacts",function(err,items){
-                for(let i=0;i<items.length;i++){
-                    console.log(items[i])
-                    fs.readFile("./contacts/"+items[i],"utf8",function(err,data){
-                        var arr = data.split("|")
-                        var arr2 = new Array()
-                        for(let j = 0;j<arr.length;j++){
-                            arr2.push(arr[i].split(":"))
-                        }
-                        console.log(arr)
-                        console.log(arr2)
-                    })
+                // for(let i=0;i<items.length;i++){
+                //     console.log(items[i])
+                //     fs.readFile("./contacts/"+items[i],"utf8",function(err,data){
+                //         var arr = data.split("|")
+                //         var arr2 = new Array()
+                //         for(let j = 0;j<arr.length;j++){
+                //             arr2.push(arr[i].split(":"))
+                //         }
+                //         console.log(arr)
+                //         console.log(arr2)
+                //     })
+                // }
+                if(err){
+                    res.end("error occured while reading files")
+                    return;
                 }
+                res.end(JSON.stringify(items.slice(0,parseInt(urlParts.query.number))))
             })
             break;
         case '/save':
