@@ -1,20 +1,31 @@
 const http = require( 'http' );
 const fs = require( 'fs' );
 const anyBody = require( 'body/any' );
+const url = require( 'url' );
+const querystring = require( 'querystring' );
 
 const server = http.createServer(function( req, res ) {
     res.setHeader( 'Content-Type', 'text/html' );
     
-    switch( req.url ) {
+    const urlParts = url.parse( req.url, true );
+    console.log( urlParts );
+
+    switch( urlParts.pathname ) {
         case '/':
             fs.readFile( './index.html', 'utf8', function( error, data ) {
                 if( error ) {
+                    res.statusCode = 404;
                     res.end( 'Page not found' );
                     return;
                 }
 
                 res.end( data );
             });
+            break;
+        case '/contacts':
+            res.statusCode = 301;
+            res.setHeader( 'Location', '/contact' );
+            res.end();
             break;
         case '/contact':
             fs.readFile( './contact.html', 'utf8', function( error, data ) {
@@ -24,6 +35,21 @@ const server = http.createServer(function( req, res ) {
                 }
 
                 res.end( data );
+            });
+            break;
+        case '/getcontacts':
+            if( urlParts.query.number === undefined ) {
+                res.statusCode = 400;
+                res.end();
+            }
+
+            fs.readdir( './contacts', function( error, files ) {
+                if( error ) {
+                    res.end( 'error occured while reading contacts' );
+                    return;
+                }
+
+                res.end( JSON.stringify( files.slice( 0, parseInt( urlParts.query.number ) ) ) );
             });
             break;
         case '/save':

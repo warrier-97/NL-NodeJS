@@ -1,0 +1,17 @@
+{
+      "name": "about-npm-node",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1",
+            "generate": "express hello-express",
+            "cnsfolder": "mkdir xyz && ls"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "dependencies": {
+            "express-generator": "^4.16.0"
+      }
+}
