@@ -11,8 +11,8 @@ app.use( express.urlencoded( { extended : false } ) ); // parse form data
 
 // associate the routers with the application
 app.use( indexRouter );
-app.use( productsRouter );
-app.use( reviewsRouter );
+app.use( '/products', productsRouter );
+app.use( '/reviews', reviewsRouter );
 
 app.listen( 8080, function( error ) {
     if( error ) {
