@@ -10,7 +10,10 @@ const morgan = require( 'morgan' );
 console.log( process.env.NODE_ENV );
 
 const app = express();
-console.log( app.get( 'env' ) ); // same as process.env.NODE_ENV (this is NOT for setting up route)
+
+// app.get() and app.set() give access to an application-wide key-value pair store
+// same as process.env.NODE_ENV (this is NOT for setting up route)
+console.log( app.get( 'env' ) );
 app.set( 'title', 'Awesome Store' );
 app.set( 'version', '1.0.0' );
 
