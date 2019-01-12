@@ -10,6 +10,9 @@ const morgan = require( 'morgan' );
 console.log( process.env.NODE_ENV );
 
 const app = express();
+console.log( app.get( 'env' ) ); // same as process.env.NODE_ENV (this is NOT for setting up route)
+app.set( 'title', 'Awesome Store' );
+app.set( 'version', '1.0.0' );
 
 // setup the logger - We use morgan in production environment, and custom console logger otherwise
 if( process.env.NODE_ENV === 'production' ) {
