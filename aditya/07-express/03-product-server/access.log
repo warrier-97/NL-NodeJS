@@ -1,0 +1,8 @@
+::1 - - [12/Jan/2019:05:48:14 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+::1 - - [12/Jan/2019:05:48:15 +0000] "GET /favicon.ico HTTP/1.1" 400 23 "http://localhost:8082/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+::1 - - [12/Jan/2019:06:15:47 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+::1 - - [12/Jan/2019:06:15:47 +0000] "GET /favicon.ico HTTP/1.1" 400 23 "http://localhost:8082/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+::1 - - [12/Jan/2019:06:15:55 +0000] "GET /products HTTP/1.1" 304 - "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+::1 - - [12/Jan/2019:06:15:55 +0000] "GET /favicon.ico HTTP/1.1" 400 23 "http://localhost:8082/products" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+::1 - - [12/Jan/2019:06:24:29 +0000] "GET /products HTTP/1.1" 200 1222 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+::1 - - [12/Jan/2019:06:24:30 +0000] "GET /favicon.ico HTTP/1.1" 400 23 "http://localhost:9000/products" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
