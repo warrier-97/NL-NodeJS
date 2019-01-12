@@ -41,7 +41,7 @@ app.use(express.urlencoded({extended:false})) //parse from data
 
 console.log(app.get('env')) // express framework picks up NODE_ENV
 app.set('title','My Store')
-app.set('','')
+app.set('version','1.0.0')
 
 
 const port = process.env.PORT || 8082
