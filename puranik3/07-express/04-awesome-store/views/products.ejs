@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title><%=title%></title>
+        <link rel="stylesheet" href="/external/bootstrap-4.2.1-dist/css/bootstrap.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1><%=title%></h1>
+            <hr />
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach(function( product ) { %>
+                        <tr>
+                            <td><img src="<%=product.imageUrl%>" style="width: 50px;" /></td>
+                            <td>
+                                <a href="/products/<%=product.id%>">
+                                    <%=product.name%></td>
+                                </a>
+                            <td><%=product.price%></td>
+                            <td><%=product.starRating%></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
