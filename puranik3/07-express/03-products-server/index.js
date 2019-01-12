@@ -3,21 +3,34 @@ const indexRouter = require( './routers/index' );
 const productsRouter = require( './routers/products' );
 const reviewsRouter = require( './routers/reviews' );
 const chalk = require( 'chalk' );
+const path = require( 'path' );
+const fs = require( 'fs' );
+const morgan = require( 'morgan' );
+
+console.log( process.env.NODE_ENV );
 
 const app = express();
 
-app.use(function( req, res, next ) {
-    req.receivedAt = new Date();
-    
-    // pass control to the next middleware - without this your server will not send response
-    next();
-});
+// setup the logger - We use morgan in production environment, and custom console logger otherwise
+if( process.env.NODE_ENV === 'production' ) {
+    const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+    app.use(morgan('combined', { stream: accessLogStream }));
+}
 
-// Exercise: Write a middleware that logs receivedAt to the console
-app.use(function( req, res, next ) {
-    console.log( chalk.red( 'Request was received at ' + req.receivedAt ) );
-    next();
-});
+if( process.env.NODE_ENV !== 'production' ) {
+    app.use(function( req, res, next ) {
+        req.receivedAt = new Date();
+        
+        // pass control to the next middleware - without this your server will not send response
+        next();
+    });
+
+    // Exercise: Write a middleware that logs receivedAt to the console
+    app.use(function( req, res, next ) {
+        console.log( chalk.red( 'Request was received at ' + req.receivedAt ) );
+        next();
+    });
+}
 
 // middleware functions
 // executed in order in which they are set
@@ -29,7 +42,9 @@ app.use( indexRouter );
 app.use( '/products', productsRouter );
 app.use( '/reviews', reviewsRouter );
 
-app.listen( 8080, function( error ) {
+const port = process.env.PORT || 8080;
+
+app.listen( port, function( error ) {
     if( error ) {
         console.log( 'error starting server' );
         return;
