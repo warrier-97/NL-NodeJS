@@ -28,23 +28,6 @@ router.post( '/', function( req, res ) {
         return;
     }
 
-    // nOt required because we are using Mongoose
-    // save() will return error is validation fails
-    // if( !product.name || !product.price || !product.code ) {
-    //     res.json({
-    //         message: 'Product name, price or code is missing/empty'
-    //     });
-    //     return;
-    // }
-    
-    // Not required because Mongoose Product schema defines default for releaseDate
-    // if( !product.releaseDate ) {
-    //     product.releaseDate = (new Date()).toString();
-    // }
-
-    // generate productId - not required - done by MongoDB
-    // product.id = data.products.length + 1; // bad logic - finally DB will do it
-
     // add the product (DB query)
     let productObj = new Product( product );
     productObj.save(function( error, savedProduct ) {
