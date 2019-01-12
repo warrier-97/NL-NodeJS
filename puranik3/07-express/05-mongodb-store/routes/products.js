@@ -18,35 +18,45 @@ router.get( '/', function( req, res ) {
     });
 });
 
-// Exercise: Handle POST / - We have seen how to create a model object and save it in the DB in db.js
-// router.post( '/', function( req, res ) {
-//     const product = req.body;
+router.post( '/', function( req, res ) {
+    const product = req.body;
 
-//     if( !req.body ) { // false, undefined, null, '',
-//         res.json({
-//             message: 'No product details - request body is empty'
-//         });
-//         return;
-//     }
+    if( !req.body ) { // false, undefined, null, '',
+        res.json({
+            message: 'No product details - request body is empty'
+        });
+        return;
+    }
 
-//     if( !product.name || !product.price || !product.code ) {
-//         res.json({
-//             message: 'Product name, price or code is missing/empty'
-//         });
-//         return;
-//     }
+    // nOt required because we are using Mongoose
+    // save() will return error is validation fails
+    // if( !product.name || !product.price || !product.code ) {
+    //     res.json({
+    //         message: 'Product name, price or code is missing/empty'
+    //     });
+    //     return;
+    // }
     
-//     if( !product.releaseDate ) {
-//         product.releaseDate = (new Date()).toString();
-//     }
+    // Not required because Mongoose Product schema defines default for releaseDate
+    // if( !product.releaseDate ) {
+    //     product.releaseDate = (new Date()).toString();
+    // }
 
-//     // generate productId
-//     product.id = data.products.length + 1; // bad logic - finally DB will do it
+    // generate productId - not required - done by MongoDB
+    // product.id = data.products.length + 1; // bad logic - finally DB will do it
 
-//     // add the product (DB query)
-//     data.products.push( product );
-//     res.status( 201 ).json( product );
-// });
+    // add the product (DB query)
+    let productObj = new Product( product );
+    productObj.save(function( error, savedProduct ) {
+        if( error ) {
+            res.json({
+                message: 'Some error occured saving product'
+            });
+            return;
+        }
+        res.status( 201 ).json( savedProduct );
+    });
+});
 
 
 // router.put( '/:productId', function( req, res ) {
