@@ -1,8 +1,7 @@
-const express = require('express')
-const session = require('express-sessions')
-const app = express();
+const express = require( 'express' );
+const session = require( 'express-session' );
 
-app.set('view engine','ejs');
+const app = express();
 
 const user = {
     username: 'john.doe@example.com',
@@ -53,9 +52,11 @@ app.get( '/private', function( req, res ) {
     res.render( 'private' );
 });
 
-
-app.listen(process.PORT_ENV || 9000,function(error){
-    if(error){
-        console.log('Error in launching the site')
+app.listen( 3100, function( error ) {
+    if( error ) {
+        console.log( 'error starting server : ' + error.message );
+        return;
     }
+
+    console.log( 'started on port 3100' );
 })
