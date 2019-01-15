@@ -1,5 +1,13 @@
 const express = require( 'express' );
 const session = require( 'express-session' );
+const MongoStore = require('connect-mongo')(session);
+const mongoose = require( 'mongoose' );
+
+mongoose.connect( 'mongodb://localhost:27017/store' );
+
+mongoose.connection.on( 'connected', function() {
+    console.log( 'connected' )
+})
 
 const app = express();
 
@@ -14,7 +22,8 @@ app.set( 'view engine', 'ejs' );
 app.use( express.urlencoded( { extended: false } ) );
 
 app.use(session({
-    secret: 'shh' // should not be stored in code
+    secret: 'shh', // should not be stored in code
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
 app.get( '/', function( req, res ) {
@@ -51,6 +60,11 @@ app.get( '/private', function( req, res ) {
 
     res.render( 'private' );
 });
+
+app.post( '/logout', function( req, res ) {
+    req.session.destroy();
+    res.redirect( '/' );
+})
 
 app.listen( 3100, function( error ) {
     if( error ) {
