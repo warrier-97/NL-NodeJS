@@ -1,25 +1,20 @@
-// require( '../models/Product' );
-// require( '../models/Review' );
+require( '../models/Product' );
+require( '../models/Review' );
 
+const mongoose = require( 'mongoose' );
 const data = require( '../init/seed.json' );
-const mysql = require( 'mysql' );
+const Product = mongoose.model( 'Product' );
+const Review = mongoose.model( 'Review' );
 
-const con = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'storekeeper',
-    password: 'storekeeper123',
-    database: 'store'
+mongoose.connect( 'mongodb://localhost:27017/store' );
+
+mongoose.connection.on( 'connected', function() {
+    console.log( 'connected to the DB' );
+    loadData();
 });
 
-con.connect(function( error ) {
-    if( error ) {
-        console.error( 'error on trying to connect to DB : ', error.message );
-        throw error;
-    }
-
-    console.log( 'connected to the DB' );    
-    // loadData();
+mongoose.connection.on( 'error', function( error ) {
+    console.error( 'error on trying to connect to DB : ', error.message );
 });
 
 function loadData() {
@@ -62,5 +57,3 @@ function loadData() {
         });
     }
 }
-
-module.exports = con;
