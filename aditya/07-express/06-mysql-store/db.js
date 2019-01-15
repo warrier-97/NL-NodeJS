@@ -1,4 +1,5 @@
 const mysql = require('mysql')
+const data = require('./data/seed.json')
 
 var con = mysql.createConnection({
     host : 'localhost',
@@ -12,9 +13,18 @@ con.connect(function(error){
     if(error){
         throw err;
     }
-    console.log('Database connection error');
 })
 
+function loadProducts(){
+    data.products.forEach(function(prod){
+        console.log(prod)
+        query = `INSERT INTO products values (${prod.name},${prod.code},${prod.releaseDate},${prod.description},${prod.price},${prod.starRating},${prod.imageUrl});`
+        con.query(query,function(error,product){
+            console.log(product)
+        })
+    })
+}
+loadProducts()
 var q = "select * from products";
 con.query(q,function(error,products){
     console.log(products)
