@@ -10,10 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-=======
     "connect-mongo": "^2.0.3",
->>>>>>> 6c76c4e8b6c950427989b098553f1af07d93eed7
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6"

@@ -1,7 +1,5 @@
 const express = require( 'express' );
 const session = require( 'express-session' );
-<<<<<<< HEAD
-=======
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require( 'mongoose' );
 
@@ -10,7 +8,6 @@ mongoose.connect( 'mongodb://localhost:27017/store' );
 mongoose.connection.on( 'connected', function() {
     console.log( 'connected' )
 })
->>>>>>> 6c76c4e8b6c950427989b098553f1af07d93eed7
 
 const app = express();
 
@@ -25,12 +22,8 @@ app.set( 'view engine', 'ejs' );
 app.use( express.urlencoded( { extended: false } ) );
 
 app.use(session({
-<<<<<<< HEAD
-    secret: 'shh' // should not be stored in code
-=======
     secret: 'shh', // should not be stored in code
     store: new MongoStore({ mongooseConnection: mongoose.connection })
->>>>>>> 6c76c4e8b6c950427989b098553f1af07d93eed7
 }));
 
 app.get( '/', function( req, res ) {
@@ -68,14 +61,11 @@ app.get( '/private', function( req, res ) {
     res.render( 'private' );
 });
 
-<<<<<<< HEAD
-=======
 app.post( '/logout', function( req, res ) {
     req.session.destroy();
     res.redirect( '/' );
 })
 
->>>>>>> 6c76c4e8b6c950427989b098553f1af07d93eed7
 app.listen( 3100, function( error ) {
     if( error ) {
         console.log( 'error starting server : ' + error.message );
