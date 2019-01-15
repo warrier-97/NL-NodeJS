@@ -17,6 +17,22 @@ router.get('/',function(req,res){
     
 })
 
+router.get('/:productId',function(req,res){
+    const productId = req.params.productId;
+    Product
+        .find({_id : productId})
+        .exec(function(err,product){
+        
+        if(err){
+            res.json({
+                message:'Error fetching data from DB' + err.message
+            })
+            return;
+        }
+        res.status(200).json(product)
+    })
+})
+
 // router.get('/:productId',function(req,res){
 //     const productId = parseInt(req.params.productId)
 //     if(isNaN(productId)){
@@ -84,6 +100,35 @@ router.post('/',function(req,res){
         })
 })
 
+router.put('/:productId',function(req,res){
+    const productId = req.params.productId;
+    const body = req.body;
+    if(!productId){
+        res.status(400).json({message:"Invalid Product Id sent"})
+    }
+    if(!body){
+        res.status(400).json(
+            {
+                message : 'No product details sent'
+            }
+        )
+    }
+    Product.findByIdAndUpdate(productId,body,{new:true},function(err,doc){
+        if(err){
+            res.status(400).json({message:'Bad request'})
+        }
+        res.status(200).json(doc)
+    })
+})
+router.delete('/:productId',function(req,res){
+    const productId = req.params.productId;
+    Product.findByIdAndDelete(productId,function(error,doc){
+        if(error){
+            res.status(400).json({message:'Bad request'})
+        }
+        res.status(200).json({message : 'Deleted the document : '+JSON.stringify(doc)})
+    })
+})
 // router.put('/:productId',function(req,res){
 //     const productId = parseInt(req.params.productId)
 //     if(isNaN(productId)){
