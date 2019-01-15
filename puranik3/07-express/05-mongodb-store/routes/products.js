@@ -60,7 +60,7 @@ router.post( '/', function( req, res ) {
 
 router.put( '/:productId', function( req, res ) {
     const body = req.body;
-    const id= req.params.id;
+    const id = req.params.productId;
     
     if( req.body === undefined ) {
         res.status(400).json({"message":"No Product details"});
@@ -75,33 +75,28 @@ router.put( '/:productId', function( req, res ) {
             return;
         }
 
-        res.send( 200 ).json( doc );
+        res.status( 200 ).json( doc );
     });
 });
 
-// router.get( '/:productId', function( req, res ) {
-//     const productId = parseInt( req.params.productId );
+router.delete( '/:productId', function( req, res ) {
+    const productId = req.params.productId;
 
-//     if( isNaN( productId ) ) {
-//         res.status( 400 ).json({
-//             message: 'Product id is not a number'
-//         });
-//         return;
-//     } else {
-//         const product = data.products.find(function( product ) {
-//             return product.id === productId;
-//         });
+    Product.findByIdAndDelete( productId, function( error, doc ) {
+        if( error ) {
+            res.status( 404 ).json({
+                message: error.message
+            });
+            return;
+        }
 
-//         if( product !== undefined ) {
-//             res.json( product );
-//         } else {
-//             res.status( 404 ).json({
-//                 message: 'No product found with id ' + productId
-//             });
-//         }
-//     }
-// });
+        res.status( 204 ).end();
+    });
+});
 
+router.delete( '/:productId', function( req, res ) {
+    Product.findByI
+});
 // router.get( '/:productId/reviews', function( req, res ) {
 //     const productId = parseInt( req.params.productId );
 
