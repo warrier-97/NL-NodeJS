@@ -20,6 +20,7 @@ mongoose.connection.on( 'error', function( error ) {
 function loadData() {
     // generated product id will be stored here
     const productIdArray = [];
+    let counter = 0;
 
     data.products.forEach(function( product ) {
         let productObj = new Product( product );
@@ -33,19 +34,26 @@ function loadData() {
             }
 
             console.log( 'Product with name = ' + savedProduct.name + ' has been saved with id = ' + savedProduct._id );
-        });
-    });
 
-    data.reviews.forEach(function( review ) {
-        let reviewObj = new Review( review );
-        reviewObj.productId = new mongoose.Types.ObjectId( productIdArray[ review.productId - 1] );
-        reviewObj.save(function( error, savedReview ) {
-            if( error ) {
-                console.error( 'Some error occured when trying to save review with title = ' + review.title );
-                return;
+            counter++;
+            if( counter === data.products.length ) {
+                loadReviews();
             }
-
-            console.log( 'Review with title = ' + savedReview.title + ' has been saved with id = ' + savedReview._id );
         });
     });
+
+    function loadReviews() {
+        data.reviews.forEach(function( review ) {
+            let reviewObj = new Review( review );
+            reviewObj.productId = new mongoose.Types.ObjectId( productIdArray[ review.productId - 1] );
+            reviewObj.save(function( error, savedReview ) {
+                if( error ) {
+                    console.error( 'Some error occured when trying to save review with title = ' + review.title );
+                    return;
+                }
+
+                console.log( 'Review with title = ' + savedReview.title + ' has been saved with id = ' + savedReview._id );
+            });
+        });
+    }
 }
