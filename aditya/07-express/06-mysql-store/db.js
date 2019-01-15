@@ -15,3 +15,7 @@ con.connect(function(error){
     console.log('Database connection error');
 })
 
+var q = "select * from products";
+con.query(q,function(error,products){
+    console.log(products)
+})
