@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const router = express.Router()
 const data = require('../data/seed.json')
 const Product = mongoose.model('Product')
+const Review = mongoose.model('Review')
 
 router.get('/',function(req,res){
     Product.find(function(error,products){
@@ -128,6 +129,22 @@ router.delete('/:productId',function(req,res){
         }
         res.status(200).json({message : 'Deleted the document : '+JSON.stringify(doc)})
     })
+})
+
+router.get('/:productId/reviews',function(req,res){
+    const productId = req.params.productId;
+    Review
+        .find({productId:productId})
+        .exec(function(error,review){
+            if(error){
+                res.json({
+                    message:'Error retreiving reviews from DB'
+                })
+                return;
+            }
+            res.status(200).json(review)
+        })
+    
 })
 // router.put('/:productId',function(req,res){
 //     const productId = parseInt(req.params.productId)
