@@ -2,6 +2,7 @@ const express = require( 'express' );
 const mongoose = require( 'mongoose' );
 
 const Product = mongoose.model( 'Product' );
+const Review = mongoose.model( 'Review' );
 
 const router = express.Router();
 
@@ -96,6 +97,23 @@ router.delete( '/:productId', function( req, res ) {
 
 router.delete( '/:productId', function( req, res ) {
     Product.findByI
+});
+
+router.get( '/:productId/reviews', function( req, res ) {
+    const productId = req.params.productId;
+
+    Review
+        .find( { productId: productId } )
+        .exec(function( error, reviews ) {
+            if( error ) {
+                res.status( 404 ).json({
+                    message: error.message
+                });
+                return;
+            }
+
+            res.status( 200 ).json( reviews );
+        });
 });
 // router.get( '/:productId/reviews', function( req, res ) {
 //     const productId = parseInt( req.params.productId );
