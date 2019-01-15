@@ -58,36 +58,26 @@ router.post( '/', function( req, res ) {
     });
 });
 
+router.put( '/:productId', function( req, res ) {
+    const body = req.body;
+    const id= req.params.id;
+    
+    if( req.body === undefined ) {
+        res.status(400).json({"message":"No Product details"});
+        return;
+    }
+    
+    Product.findByIdAndUpdate( id, body, { new: true }, function( err, doc ) {
+        if(err) {
+            res.status(400).json({
+                "message": "Bad server request product id not found","product_id":`${id}`
+            });
+            return;
+        }
 
-// router.put( '/:productId', function( req, res ) {
-//     const productId = parseInt( req.params.productId );
-
-//     if( isNaN( productId ) ) {
-//         res.status( 400 ).json({
-//             message: 'Product id is not a number'
-//         });
-//         return;
-//     }
-
-//     const product = req.body;
-//     if( !product ) {
-//         res.json({
-//             message: 'No product details - request body is empty'
-//         });
-//         return;
-//     }
-
-//     let matchingIndex;
-//     const matchingProduct = data.products.find(function( product, index ) {
-//         if( product.id === productId ) {
-//             matchingIndex = index;
-//         }
-//         return product.id === productId;
-//     });
-
-//     data.products[matchingIndex] = { ...matchingProduct, ...product };
-//     res.json( data.products );
-// });
+        res.send( 200 ).json( doc );
+    });
+});
 
 // router.get( '/:productId', function( req, res ) {
 //     const productId = parseInt( req.params.productId );
