@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// require( './init/drop-db.js' );
 require( './init/db.js' );
 
 var productsRouter = require( './routes/products' );
