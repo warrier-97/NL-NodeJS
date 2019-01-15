@@ -22,6 +22,8 @@ router.get('/:productId',function(req,res){
     const productId = req.params.productId;
     Product
         .find({_id : productId})
+        .select('title text starRating') // get only these fields
+        .sort('starRating -title') //sort by starRating first and on tie sort by title(descending)
         .exec(function(err,product){
         
         if(err){

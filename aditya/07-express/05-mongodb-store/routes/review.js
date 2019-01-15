@@ -18,13 +18,15 @@ router.get('/',function(req,res){
 })
 router.get('/:productId',function(req,res){
     const productId = req.params.productId;
-    Review.find({productId:productId},function(error,review){
+    Review
+    .find({productId:productId},function(error,review){
         if(error){
             res.status(400).json({message : 'Bad request'})
             return;
         }
         res.json(review)
     })
+    .limit(1)
 })
 
 module.exports = router;
