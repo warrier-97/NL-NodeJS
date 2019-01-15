@@ -18,6 +18,23 @@ router.get( '/', function( req, res ) {
     });
 });
 
+// to retrieve one product
+router.get( '/:productId', function( req, res ) {
+    const productId = req.params.productId;
+    Product
+        .findOne( { _id: productId } )
+        .exec(function( error, product ) {
+        if( error ) {
+            res.json({
+                message: 'Error retrieving product details from DB : ' + error.message
+            });
+            return;
+        }
+
+        res.status(200).json( product );
+    })
+});
+
 router.post( '/', function( req, res ) {
     const product = req.body;
 
