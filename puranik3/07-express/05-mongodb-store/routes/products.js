@@ -95,15 +95,18 @@ router.delete( '/:productId', function( req, res ) {
     });
 });
 
-router.delete( '/:productId', function( req, res ) {
-    Product.findByI
-});
-
+// GET /:productId/reviews?page=2&pageSize=10
 router.get( '/:productId/reviews', function( req, res ) {
     const productId = req.params.productId;
+    const page = parseInt( req.query.page || 1 );
+    const pageSize = parseInt( req.query.pageSize || 10 );
 
     Review
         .find( { productId: productId } )
+        .select( 'reviewer title text starRating' ) // retrieve only these fields
+        .sort( 'starRating -title' ) // sort by starRating first, and then on tie sort by title (reverse alphabetical order, i.e. Z -> A)
+        .skip( ( page - 1 ) * pageSize )
+        .limit( pageSize )
         .exec(function( error, reviews ) {
             if( error ) {
                 res.status( 404 ).json({
@@ -115,20 +118,5 @@ router.get( '/:productId/reviews', function( req, res ) {
             res.status( 200 ).json( reviews );
         });
 });
-// router.get( '/:productId/reviews', function( req, res ) {
-//     const productId = parseInt( req.params.productId );
-
-//     if( isNaN( productId ) ) {
-//         res.status( 400 ).json({
-//             message: 'Product id is not a number'
-//         });
-//         return;
-//     } else {
-//         const reviews = data.reviews.filter(function( review ) {
-//             return review.productId === productId
-//         });
-//         res.json( reviews );
-//     }
-// });
 
 module.exports = router;
