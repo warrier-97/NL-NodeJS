@@ -9,6 +9,7 @@ Node.js training at Nineleaps, Bangalore from Jan 10 - 15 2019
 [Meeting link]( https://zoom.us/j/334653506)
 
 ## Video links
+* [File upload using multer middleware](https://s3.amazonaws.com/corporate-trainings/nineleaps/nodejs-nineleaps-jan-10-2019-jan-15-2019/file-upload-using-multer-middleware.mp4)
 * [Jan 10 2019 - Part 1](https://s3.amazonaws.com/corporate-trainings/nineleaps/nodejs-nineleaps-jan-10-2019-jan-15-2019/jan-10-2019-part-01.mp4)
 * [Jan 10 2019 - Part 2](https://s3.amazonaws.com/corporate-trainings/nineleaps/nodejs-nineleaps-jan-10-2019-jan-15-2019/jan-10-2019-part-02.mp4)
 * [Jan 10 2019 - Part 3](https://s3.amazonaws.com/corporate-trainings/nineleaps/nodejs-nineleaps-jan-10-2019-jan-15-2019/jan-10-2019-part-03.mp4)
