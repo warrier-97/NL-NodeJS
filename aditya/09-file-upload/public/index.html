@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>File upload</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <form action="/portfolio" method="POST" enctype="multipart/form-data">
+        <div>
+            <label>Username : <input type="text" name="username"></label>
+        </div>
+        <div>
+            <label>Resume : <input type="file" name="resume"></label>
+        </div>
+        <div>
+            <label>Portfolio pics : <input type="file" name="portfolio" multiple></label>
+        </div>
+        <div>
+            <label><input type="submit" value="submit"></label>
+        </div>
+    </form>
+</body>
+</html>
