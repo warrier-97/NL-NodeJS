@@ -19,7 +19,7 @@ const users = [
     }
 ];
 
-function getUsers( username, password ) {
+function getUser( username, password ) {
     return users.find(function( user ) {
         return user.username === username && user.password === password
     });
@@ -45,7 +45,7 @@ app.post( '/login', function( req, res ) {
         var password = req.body.password;
     }
     
-    const user = getUsers( username, password );
+    const user = getUser( username, password );
 
     console.log( '*** user = ', user );
     console.log( '*** username = ', username );
@@ -84,7 +84,24 @@ app.post( '/login', function( req, res ) {
 });
 
 app.get( '/private', function( req, res ) {
-    console.log( req.headers.Authorization );
+    const authorizationHeader = req.get( 'Authorization' ) || req.get( 'authorization' );
+    const token = authorizationHeader.split( ' ' )[1];
+
+    jwt.verify( token, 'shh...', function( error, claims ) {
+        if( error ) {
+            res.redirect( '/' );
+            return;
+        }
+
+        if( claims.isAdmin === true ) {
+            // person is admin
+        } else {
+            // not admin
+        }
+
+        res.render( 'private' );
+    });
+
     if( req.session.user === undefined ) {
         // res.status(403).json({
         //     message: 'You are not authorized to view this page'
