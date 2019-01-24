@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+
+    <form action="/login" method="POST">
+        <label>
+            Username: 
+            <input type="text" name="username" >
+        </label>
+        <label>
+            Password: 
+            <input type="password" name="password">
+        </label>
+        <button>Submit</button>
+        <% if(errorLogin){ %>
+            There was an error during login
+        <% } %>
+    </form>
+    
+</body>
+</html>
