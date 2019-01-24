@@ -7,13 +7,52 @@
         <title>Document</title>
     </head>
     <body>
-        <form method="POST" action="/login">
-            Username: <input type="text" name="username" />
-            Password: <input type="password" name="password" />
-            <button>Login</button>
-            <% if( errorLoggingIn ) { %>
-                There was an error logging in
-            <% } %>
-        </form>
+        <div id="root">
+            <form method="POST" action="/login">
+                Username: <input type="text" name="username" id="username" />
+                Password: <input type="password" name="password" id="password" />
+                <button id="submit-button">Login</button>
+                <% if( errorLoggingIn ) { %>
+                    There was an error logging in
+                <% } %>
+            </form>
+        </div>
+
+        <script>
+            document.getElementById( 'submit-button' ).onclick = function( event ) {
+                event.preventDefault();
+
+                fetch( 'http://localhost:3100/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: document.getElementById( 'username' ).value,
+                        password: document.getElementById( 'password' ).value
+                    })
+                }).then(function( response ) {
+                    return response.json();
+                }).then(function( data ) {
+                    // passport is safely stored in localStorage
+                    localStorage.setItem( 'username', data.username );
+                    localStorage.setItem( 'token', data.token );
+                })
+                .then(function() {
+                    return fetch( 'http://localhost:3100/private', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem( 'token' )
+                        }
+                    });
+                })
+                .then(function( response ) {
+                    return response.text();
+                })
+                .then(function( html ) {
+                    document.getElementById( 'root' ).innerHTML = html;
+                });
+            }
+        </script>
     </body>
 </html>

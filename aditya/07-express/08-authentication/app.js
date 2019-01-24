@@ -36,6 +36,7 @@ app.post('/login',function(req,res){
             //console.log(doc);
             doc.forEach(function(item){
                 if(item.username === req.body.username && item.password === req.body.password){
+                    req.session.user = item;
                     res.json({
                         message : "You have successfully logged in"
                     })

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+        <p>
+            Are you a wannabe model? Fill in your details, upload your resume, and portfolio pics
+        </p>
+        <form action="/profile" method="post" enctype="multipart/form-data">
+            <div>
+                <label>Username <input type="text" name="username" /></label>
+            </div>
+            <div>
+                <label>Resume <input type="file" name="resume" /> (must be .pdf file)</label>
+            </div>
+            <div>
+                <label>Portfolio pics <input type="file" name="portfolio" multiple /> (must be .jpg, .jpeg, .tiff, .png)</label>
+            </div>
+            <input type="submit" value="Submit" />
+        </form>
+    </body>
+</html>

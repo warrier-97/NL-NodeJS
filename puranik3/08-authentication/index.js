@@ -1,30 +1,34 @@
 const express = require( 'express' );
-const session = require( 'express-session' );
-const MongoStore = require('connect-mongo')(session);
-const mongoose = require( 'mongoose' );
-
-mongoose.connect( 'mongodb://localhost:27017/store' );
-
-mongoose.connection.on( 'connected', function() {
-    console.log( 'connected' )
-})
+const jwt = require( 'jsonwebtoken' );
 
 const app = express();
 
-const user = {
-    username: 'john.doe@example.com',
-    password: 'password'
-};
+app.use( express.urlencoded( { extended: false } ) );
+app.use( express.json() );
+
+const users = [
+    {
+        username: 'john.doe@example.com',
+        password: 'password',
+        isAdmin: true
+    },
+    {
+        username: 'mark.smith@example.com',
+        password: 'password',
+        isAdmin: false
+    }
+];
+
+function getUser( username, password ) {
+    return users.find(function( user ) {
+        return user.username === username && user.password === password
+    });
+}
 
 app.set( 'view engine', 'ejs' );
 
 // to parse form body
 app.use( express.urlencoded( { extended: false } ) );
-
-app.use(session({
-    secret: 'shh', // should not be stored in code
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));
 
 app.get( '/', function( req, res ) {
     res.render( 'login', {
@@ -34,14 +38,44 @@ app.get( '/', function( req, res ) {
 
 app.post( '/login', function( req, res ) {
     // username-password comnination will be checked in DB
-    if( req.body && req.body.username === user.username && req.body.password === user.password ) {
-        const username = req.body.username;
-        const password = req.body.password;
+    console.log( req.body );
+
+    if( req.body ) {
+        var username = req.body.username;
+        var password = req.body.password;
+    }
+    
+    const user = getUser( username, password );
+
+    console.log( '*** user = ', user );
+    console.log( '*** username = ', username );
+    console.log( '*** password = ', password );
+    
+    if( req.body && user ) {
         console.log( username );
-        req.session.user = user; // we set up the logged in user details on req.session
-        res.send({
-            message: 'You have successfully logged in'
-        })
+    
+        // JWT token has details required for authentication (is allowed or not) and authorization (priviliges)
+        const claims = {
+            username: user.username,
+            isAdmin: user.isAdmin
+        };
+
+        console.log( '*** claims = ', claims );
+
+        jwt.sign( claims, 'shh...', { expiresIn: '24h' }, function( error, token ) {
+            if( error ) {
+                res.status(403).json({
+                    message: error.message
+                });
+                return;
+            }
+
+            res.status(200).json({
+                message: 'You are now logged in',
+                token: token,
+                username: username
+            });
+        });
     } else {
         res.status(403).render( 'login', {
             errorLoggingIn: true
@@ -50,6 +84,24 @@ app.post( '/login', function( req, res ) {
 });
 
 app.get( '/private', function( req, res ) {
+    const authorizationHeader = req.get( 'Authorization' ) || req.get( 'authorization' );
+    const token = authorizationHeader.split( ' ' )[1];
+
+    jwt.verify( token, 'shh...', function( error, claims ) {
+        if( error ) {
+            res.redirect( '/' );
+            return;
+        }
+
+        if( claims.isAdmin === true ) {
+            // person is admin
+        } else {
+            // not admin
+        }
+
+        res.render( 'private' );
+    });
+
     if( req.session.user === undefined ) {
         // res.status(403).json({
         //     message: 'You are not authorized to view this page'
