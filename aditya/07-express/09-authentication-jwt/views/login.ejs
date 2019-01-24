@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <form action="/login" method="POST">
+        <label>
+            Username: 
+            <input type="text" name="username" id="username">
+        </label>
+        <label>
+            Password: 
+            <input type="password" name="password" id="password">
+        </label>
+        <button id="submitID" type="submit" onclick="abc(event)">Submit</button>
+        <% if(errorLogin){ %>
+            There was an error during login
+        <% } %>
+    </form>
+    <script>
+        function abc(event){
+            event.preventDefault();
+            fetch( 'http://localhost:3001/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: document.getElementById( 'username' ).value,
+                    password: document.getElementById( 'password' ).value
+                })
+                })
+                .then(function( response ) {
+                    return response.json();
+                })
+                .then(function( data ) {
+                localStorage.setItem( 'username', data.username );
+                localStorage.setItem( 'token', data.token );
+                })
+            }
+    </script>
+</body>
+</html>

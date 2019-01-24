@@ -70,10 +70,10 @@ app.post('/logout',function(req,res){
 })
 
 
-app.listen(3001,function(err){
+app.listen(3002,function(err){
     if(err){
         console.log('Error starting the server')
         return;
     }
-    console.log('Server started on port 3001')
+    console.log('Server started on port 3002')
 })
