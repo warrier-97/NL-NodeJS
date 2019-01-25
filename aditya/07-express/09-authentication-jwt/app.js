@@ -59,7 +59,16 @@ app.post('/login',function(req,res){
 })
 
 app.get('/private',function(req,res){
-    res.render('private');
+    const authorizationHeader = req.get('Authorizarion') || req.get('authorization');
+    const token = authorizationHeader.split(' ')[1];
+    jwt.verify(token,'mysecret',function(error,claims){
+        if(error){
+            res.json({
+                message : 'Token incorrect'
+            })
+        }
+        res.render('private')
+    })
 })
 
 app.listen(3001,function(error){

@@ -7,20 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <form action="/login" method="POST">
-        <label>
-            Username: 
-            <input type="text" name="username" id="username">
-        </label>
-        <label>
-            Password: 
-            <input type="password" name="password" id="password">
-        </label>
-        <button id="submitID" type="submit" onclick="abc(event)">Submit</button>
-        <% if(errorLogin){ %>
-            There was an error during login
-        <% } %>
-    </form>
+    <div id = "root">
+        <form action="/login" method="POST">
+            <label>
+                Username: 
+                <input type="text" name="username" id="username">
+            </label>
+            <label>
+                Password: 
+                <input type="password" name="password" id="password">
+            </label>
+            <button id="submitID" type="submit" onclick="abc(event)">Submit</button>
+            <% if(errorLogin){ %>
+                There was an error during login
+            <% } %>
+        </form>
+    </div>
     <script>
         function abc(event){
             event.preventDefault();
@@ -40,6 +42,20 @@
                 .then(function( data ) {
                 localStorage.setItem( 'username', data.username );
                 localStorage.setItem( 'token', data.token );
+                })
+                .then(function(){
+                    return fetch('http://localhost:3001/private',{
+                        method : 'GET',
+                        headers : {
+                            'Authorization' : 'Bearer ' + localStorage.getItem('token')
+                        }
+                    })
+                })
+                .then(function(response){
+                    return response.text();
+                })
+                .then(function(html){
+                    document.getElementById('root').innerHTML = html;
                 })
             }
     </script>
